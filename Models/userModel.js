@@ -19,12 +19,12 @@ const UserSchema= mongoose.Schema(
         },
         password:{
             type:String,
-            required:true
         },
         isAdmin:{
             type:Boolean,
             default:false
         },
+        email_verified:Boolean,
         profilePicture:String,
         coverPicture:String,
         about:String,
