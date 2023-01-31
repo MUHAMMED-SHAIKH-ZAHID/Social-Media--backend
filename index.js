@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import AuthRoute from './Routes/AuthRoute.js'
 import UserRoute from './Routes/UserRoute.js'
-import PostRoute from './Routes/PostRoute.js'
+import PostRoute from './Routes/postRoute.js'
 import ChatRoute from './Routes/chatRoute.js'
 import MessageRoute from './Routes/messageRoute.js'
 import adminRoute from "./Routes/adminRoute.js";
