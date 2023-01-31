@@ -1,5 +1,5 @@
 import express  from "express";
-import {commentPost, createPost, deletePost, getAllPost, getPost, likePost, savePost, updatePost, UserProfile}  from "../Controllers/PostController.js";
+import {commentPost, createPost, deletePost, getAllPost, getPost, likePost, savePost, updatePost, UserProfile}  from "../Controllers/postController.js";
 import verifyToken from "../Middleware/middleware.js";
 
 const router = express.Router()
