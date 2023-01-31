@@ -8,7 +8,6 @@ import jwt from 'jsonwebtoken'
 export const registerUser = async (req,res)=>{
     console.log(req.body,"password",req.body.password)
 
-
  const salt = await bcrypt.genSalt(10)
  const hashePass= await bcrypt.hash( req.body.password , salt );
  req.body.password=hashePass
@@ -30,7 +29,7 @@ export const registerUser = async (req,res)=>{
     }
     else{
    const user= await newUser.save()
-   const username=user.username
+   const username=user._id
     const token =jwt.sign({
         username:user.username,id:user._id
     },process.env.JWT_KEY,{expiresIn:8400})
@@ -58,7 +57,7 @@ export const loginUser = async (req,res) => {
                 res.status(400).json("Wrong Password")
             }
             else{
-                const username=user.username
+                const username=user._id
                 const token =jwt.sign({
                     username:user.username,id:user._id
                 },process.env.JWT_KEY,{expiresIn:8400})
@@ -83,10 +82,10 @@ export const googleuser = async(req,res) =>{
         const User = await UserModel.findOne({email:email})
         if(User){
             console.log("user already exist",User.username,User._id)
-            const username=User.username
+            const username=User._id
             const token=jwt.sign({
                 username:User.username,id:User._id },
-                process.env.JWT_KEY,{expiresIn:840000})
+                process.env.JWT_KEY,{expiresIn:84000 })
                 res.status(200).json({username,token})
                 console.log("tocken sented",token);
 
@@ -96,7 +95,7 @@ export const googleuser = async(req,res) =>{
            console.log(User,"destructuring the details in teh google backend");
           // const googleuser = await User.save()
           // console.log(googleuser,"googleuser googleuser googleuser googleuser muhammed shaikh Zahid");
-          const username=User.username
+          const username=User._id
            const token=jwt.sign({
             username:User.username,id:User._id},
             process.env.JWT_KEY,{expiresIn:8400})
