@@ -49,7 +49,7 @@ export const loginUser = async (req,res) => {
         console.log(username,"asdfghjkklzxcvbnmqwertyuiop");
         const user = await UserModel.findOne({username: username})
         console.log("user details in the login",user);
-        if(user){
+        if(!user.isBlock){
             console.log(user,"the user find after seraching in db for login",user.password)
             const validity = await bcrypt.compare(password,user.password)
 

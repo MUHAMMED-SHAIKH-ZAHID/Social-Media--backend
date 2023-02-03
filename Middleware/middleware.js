@@ -9,10 +9,10 @@ const verifyToken = async (req, res, next) => {
     try {
         let authHeader = req.headers.authorization
         if (authHeader == undefined) {
-            console.log("jwt testing 🤷‍♀️",req.headers);
+         
             //res.status(401).send({error:"No token provided"})
         } else {
-            console.log("else of jwt 🤷‍♀️🤷‍♀️");
+
             token = authHeader.split(" ")[1] //or pop()  
         }
 
@@ -21,7 +21,7 @@ const verifyToken = async (req, res, next) => {
             const decoded = jwt.verify(token,process.env.JWT_KEY)
             
             req.userId = decoded?.id
-            console.log(req.userId,"its the decoded userid in the middleware🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🚒🚒🚒🚒");
+            console.log(req.userId,"its the decoded userid in the middleware🔥🔥🔥");
 
         }
         next()

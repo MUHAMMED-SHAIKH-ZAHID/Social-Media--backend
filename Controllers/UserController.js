@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import UserModel from "../Models/userModel.js";
 import bcrypt from 'bcrypt'
 import PostModel from "../Models/postModel.js";
@@ -159,3 +160,29 @@ export const getspecificuser = async(req,res)=>{
     
     }
 }
+
+//search a user
+export const searchUsers = async (req, res, next) => {
+    try {
+        console.log("inside getUsers");
+        const userId = mongoose.Types.ObjectId(req.userid);
+
+        const searchResult = await UserModel.find({
+            $and: [
+                { _id: { $ne: userId } },
+                { firstname: new RegExp("^" + req.params.data, "i") },
+            ],
+        })
+        //firstname: new RegExp('^' + req.params.data, 'i')
+        if (searchResult) {
+            // console.log(userId,req.params.data.search,searchResult,"cvcvccvcvcccccv");
+            res.status(200).json(searchResult);
+        } else {
+            res.status(400).json({ message: "No results" });
+            throw new Error("No results");
+        }
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+

@@ -7,10 +7,12 @@ import PostRoute from './Routes/postRoute.js'
 import ChatRoute from './Routes/chatRoute.js'
 import MessageRoute from './Routes/messageRoute.js'
 import adminRoute from "./Routes/adminRoute.js";
+import reportRoute from './Routes/reportRoute.js'
 import cors from 'cors'
 import morgan from "morgan";
 import { createServer } from 'http'
 import { Server } from 'socket.io'
+
 
 //Routes
 const app = express();
@@ -37,11 +39,12 @@ app.use(
 
 //usage of routes
 app.use('/auth',AuthRoute)
-app.use('/user', UserRoute)
+app.use('/user',UserRoute)
 app.use('/Post',PostRoute)
 app.use('/chat',ChatRoute)
 app.use('/message',MessageRoute)
 app.use('/admin',adminRoute)
+app.use('/report',reportRoute)
 
 //Socket setup
 const httpServer = createServer(app);

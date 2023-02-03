@@ -20,7 +20,7 @@ const UserSchema= mongoose.Schema(
         password:{
             type:String,
         },
-        isAdmin:{
+        isBlock:{
             type:Boolean,
             default:false
         },
