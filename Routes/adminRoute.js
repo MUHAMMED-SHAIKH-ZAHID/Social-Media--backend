@@ -1,5 +1,5 @@
 import express from "express";
-import { admindeletePost, admingoogle, Adminlogin, blockUser, deleteReport, getAllUsers, getReport } from "../Controllers/adminAuthController.js";
+import {admingoogle, Adminlogin, adminremovePost, adminSinglePost, allPost, blockUser, Dashborddata, deletePostAdmin, deleteReport, getAllUsers, getReport } from "../Controllers/adminAuthController.js";
 
 import verifyToken from "../Middleware/middleware.js";
 
@@ -10,8 +10,12 @@ router.post('/login',Adminlogin)
 router.post('/google',admingoogle)
 router.get('/getReport',verifyToken,getReport)
 router.delete('/deleteReport',verifyToken,deleteReport)
-router.post('/deletepost',verifyToken,admindeletePost)
+router.post('/removepost',verifyToken,adminremovePost)
+router.delete('/deletepost/:id',verifyToken,deletePostAdmin)
 router.get('/getallusers',verifyToken,getAllUsers)
 router.post('/blockuser',verifyToken,blockUser)
+router.get('/allPost',verifyToken,allPost)
+router.get('/singlepost/:id',verifyToken,adminSinglePost)
+router.get('/dashbordData',verifyToken,Dashborddata)
 
 export default router;

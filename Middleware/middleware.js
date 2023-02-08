@@ -17,7 +17,7 @@ const verifyToken = async (req, res, next) => {
         }
 
         if (token) {
-            console.log("its ihe jwt token 🤷‍♀️🤷‍♀️🤷‍♀️");
+       
             const decoded = jwt.verify(token,process.env.JWT_KEY)
             
             req.userId = decoded?.id

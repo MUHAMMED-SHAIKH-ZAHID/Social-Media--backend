@@ -34,10 +34,8 @@ export const getAllPost = async(req,res) => {
 //Get a post
 export const getPost = async (req,res) => {
     const id=req.params.id
-    console.log("in the getpost ❤️❤️❤️",id);
     try {
         const post = await PostModel.findById(id).populate('userId').populate("comments.commentby")
-        console.log("in the getpost ❤️❤️",post);
         res.status(200).json(post)
     } catch (error) {
         res.status(500).json(error)
@@ -83,17 +81,20 @@ export const savePost = async(req,res)=>{
 
 //Update a Request
 export const updatePost = async (req,res) =>{
-    const postId = req.params.id
-    const {userId} = req.body
+    console.log(req.body,"body of update post");
+    const postId = req.body.id
+    const userId = req.userId
     try {
         const post = await PostModel.findById(postId)
-        if(post.userId === userId ){
-            await post.updateOne ({$set : req.body})
+        console.log(userId == post.userId,"checking");
+        if(post.userId == userId ){
+            await post.updateOne ({$set : { caption : req.body.text}})
             res.status(200).json("Post Updated")
         }else{
             res.status(403).json("Action Forbidden")
         }
     } catch (error) {
+        console.log(error,"cach in the update request")
       res.status(500).json(error)  
     } 
 }

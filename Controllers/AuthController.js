@@ -76,7 +76,7 @@ export const loginUser = async (req,res) => {
 
 //Google User
 export const googleuser = async(req,res) =>{
-    console.log("it is the backend of google login ")
+    console.log("it is the backend of google login 💙💙💙💙 Googel ",req.body)
     const email = req.body.email
     try {
         const User = await UserModel.findOne({email:email})
@@ -91,7 +91,7 @@ export const googleuser = async(req,res) =>{
 
         }else{
             console.log("else case of new google user",req.body);
-            const User = await new UserModel({firstname:req.body.given_name,lastname:req.body.family_name,username:req.body.name,email:req.body.email,email_verified:req.body.email_verified}).save()
+            const User = await new UserModel({firstname:req.body.given_name,lastname:req.body.family_name,username:req.body.name,email:req.body.email,email_verified:req.body.email_verified,profilePicture:req.body.picture}).save()
            console.log(User,"destructuring the details in teh google backend");
           // const googleuser = await User.save()
           // console.log(googleuser,"googleuser googleuser googleuser googleuser muhammed shaikh Zahid");
